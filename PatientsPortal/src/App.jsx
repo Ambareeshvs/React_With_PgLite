@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DatabaseProvider } from './dbContext/DatabaseContext';
-import Navbar from './components/common/Navbar';
+import Layout from './components/common/Layout';
 
 function App() {
   return (
     <DatabaseProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar />}>
+          <Route path="/" element={<Layout />}>
           </Route>
         </Routes>
       </Router>
