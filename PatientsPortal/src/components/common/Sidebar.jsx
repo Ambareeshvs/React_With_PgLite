@@ -18,7 +18,7 @@ const Sidebar = ({ open, onClose }) => {
     { to: '/', label: 'Dashboard', icon: <Home size={20} /> },
     { to: '/register', label: 'Register Patient', icon: <UserPlus size={20} /> },
     { to: '/query', label: 'Query Patients', icon: <Search size={20} /> },
-    { to: '/patients', label: 'Patient List', icon: <Users size={20} /> },
+    { to: '/list', label: 'Patient List', icon: <Users size={20} /> },
   ];
 
   const activeClass = 'bg-primary-50 text-primary-600 border-l-4 border-primary-600';
