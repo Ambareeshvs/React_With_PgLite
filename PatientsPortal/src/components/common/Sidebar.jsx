@@ -17,8 +17,8 @@ const Sidebar = ({ open, onClose }) => {
   const navItems = [
     { to: '/', label: 'Dashboard', icon: <Home size={20} /> },
     { to: '/register', label: 'Register Patient', icon: <UserPlus size={20} /> },
-    { to: '/query', label: 'Query Patients', icon: <Search size={20} /> },
     { to: '/list', label: 'Patient List', icon: <Users size={20} /> },
+    { to: '/query', label: 'Query Patients', icon: <Search size={20} /> },
   ];
 
   const activeClass = 'bg-primary-50 text-primary-600 border-l-4 border-primary-600';
@@ -34,12 +34,12 @@ const Sidebar = ({ open, onClose }) => {
       )}
 
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-cyan-50 shadow-lg transform transition-transform duration-300 ease-in-out md:hidden ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
-          <span className="text-xl font-bold text-primary-800">MedicalBlocks</span>
+          <span className="text-xl font-bold text-primary-800">Patient Portal</span>
           <button
             type="button"
             className="rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -78,9 +78,9 @@ const Sidebar = ({ open, onClose }) => {
 
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
-          <div className="flex flex-col flex-grow border-r border-gray-200 bg-white pt-5 pb-4 overflow-y-auto">
+          <div className="flex flex-col flex-grow border-r border-gray-200 bg-cyan-50 pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <span className="text-xl font-bold text-primary-800">MedicalBlocks</span>
+              <span className="text-xl font-bold text-primary-800">Patient Portal</span>
             </div>
             <div className="mt-8 flex-grow flex flex-col">
               <nav className="flex-1 px-2 space-y-1">

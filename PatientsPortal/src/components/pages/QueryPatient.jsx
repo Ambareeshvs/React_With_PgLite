@@ -8,7 +8,6 @@ const QueryPatient = () => {
   const [sqlQuery, setSqlQuery] = useState('SELECT * FROM patients LIMIT 10');
   const [queryResult, setQueryResult] = useState(null);
   const [isExecuting, setIsExecuting] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const handleQueryChange = (e) => {
     setSqlQuery(e.target.value);
@@ -35,26 +34,6 @@ const QueryPatient = () => {
 
   const handleLoadExample = (example) => {
     setSqlQuery(example);
-  };
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
-  const downloadResults = () => {
-    if (!queryResult?.data || queryResult.data.length === 0) return;
-
-    const jsonStr = JSON.stringify(queryResult.data, null, 2);
-    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonStr);
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute('href', dataStr);
-    downloadAnchorNode.setAttribute('download', 'patient_query_results.json');
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
   };
 
   if (!isInitialized) {
@@ -90,13 +69,6 @@ const QueryPatient = () => {
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                onClick={() => handleLoadExample('SELECT * FROM patients ORDER BY last_name LIMIT 10')}
-                className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-              >
-                <Clipboard className="h-4 w-4 mr-1" /> Basic query
-              </button>
-              <button
-                type="button"
                 onClick={() => handleLoadExample("SELECT * FROM patients WHERE last_name LIKE 'S%' ORDER BY last_name")}
                 className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               >
@@ -108,6 +80,13 @@ const QueryPatient = () => {
                 className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               >
                 <Clipboard className="h-4 w-4 mr-1" /> Statistics
+              </button>
+              <button
+                type="button"
+                onClick={() => handleLoadExample('DELETE FROM patients WHERE ID = 1')}
+                className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              >
+                <Clipboard className="h-4 w-4 mr-1" /> Delete query
               </button>
             </div>
             <button
@@ -126,7 +105,7 @@ const QueryPatient = () => {
                 </>
               ) : (
                 <>
-                  <Database className="h-4 w-4 mr-1" /> Run Query
+                  <Database className="inline-flex items-center h-4 w-4 mr-1" /> Run Query
                 </>
               )}
             </button>
@@ -139,35 +118,6 @@ const QueryPatient = () => {
           <div className="px-4 py-5 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-medium text-gray-900">Query Results</h3>
-              <div className="flex space-x-2">
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard(JSON.stringify(queryResult.data, null, 2))}
-                  className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                  disabled={!queryResult.success || queryResult.data.length === 0}
-                >
-                  {copied ? (
-                    <>
-                      <svg className="h-4 w-4 mr-1 text-success-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4 mr-1" /> Copy JSON
-                    </>
-                  )}
-                </button>
-                <button
-                  type="button"
-                  onClick={downloadResults}
-                  className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                  disabled={!queryResult.success || queryResult.data.length === 0}
-                >
-                  <Download className="h-4 w-4 mr-1" /> Download JSON
-                </button>
-              </div>
             </div>
 
             {!queryResult.success ? (

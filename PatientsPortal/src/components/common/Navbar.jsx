@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Activity } from 'lucide-react';
+import { Menu, Stethoscope } from 'lucide-react';
 
 function Navbar({ onMenuClick }) {
   return (
-    <nav className="bg-white border-b border-gray-200 shadow-sm">
+    <nav className="bg-cyan-50 border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl lg:max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
@@ -18,7 +18,7 @@ function Navbar({ onMenuClick }) {
             </button>
             <div className="flex-shrink-0 flex items-center mx-4">
               <Link to="/" className="flex items-center">
-                <Activity className="h-8 w-8 text-primary-600" />
+                <Stethoscope className="h-8 w-8 text-primary-600" />
                 <span className="ml-2 text-xl font-bold text-primary-800">Patient Portal</span>
               </Link>
             </div>
@@ -26,11 +26,8 @@ function Navbar({ onMenuClick }) {
           <div className="flex items-center">
             <div className="ml-3 relative">
               <div className="flex items-center">
-                <div className="h-8 w-8 rounded-full bg-primary-600 flex items-center justify-center text-black font-medium">
-                  DR
-                </div>
                 <span className="ml-2 text-sm font-medium text-gray-700 hidden md:block">
-                  Dr. Smith
+                  Dr. John Doe
                 </span>
               </div>
             </div>

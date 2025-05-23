@@ -181,11 +181,9 @@ const RegisterPatient = () => {
                   className={`form-input ${errors.gender ? 'border-error-500 focus:ring-error-500 focus:border-error-500' : ''}`}
                   required
                 >
-                  <option value="">Select gender</option>
+                  <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                  <option value="other">Other</option>
-                  <option value="prefer_not_to_say">Prefer not to say</option>
                 </select>
                 {errors.gender && <p className="mt-1 text-sm text-error-600">{errors.gender}</p>}
               </div>
@@ -221,7 +219,7 @@ const RegisterPatient = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="(123) 456-7890"
+                  placeholder="(+91) XXXXXXXXXX"
                 />
               </div>
 
@@ -236,7 +234,7 @@ const RegisterPatient = () => {
                   value={formData.address}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="Street address, city, state, zip"
+                  placeholder="Street address, city, state"
                 />
               </div>
 
@@ -296,7 +294,7 @@ const RegisterPatient = () => {
               className="mr-3 btn btn-outline text-gray-700"
               onClick={() => setFormData(initialFormData)}
             >
-              Reset
+              Clear
             </button>
             <button
               type="submit"
@@ -312,7 +310,7 @@ const RegisterPatient = () => {
                   Processing...
                 </>
               ) : (
-                'Register Patient'
+                'Register'
               )}
             </button>
           </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllPatients, searchPatientsByName } from '../../services/DatabaseService';
 import { useDatabaseContext } from '../../dbContext/DatabaseContext';
-import { Search, Download } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const GetAllPatient = () => {
   const { isInitialized } = useDatabaseContext();
@@ -74,19 +74,6 @@ const GetAllPatient = () => {
     return 0;
   });
 
-  const downloadPatientData = () => {
-    if (patients.length === 0) return;
-    
-    const jsonStr = JSON.stringify(patients, null, 2);
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonStr);
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "patient_data.json");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-  };
-
   if (!isInitialized) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -137,14 +124,6 @@ const GetAllPatient = () => {
                 className="btn btn-outline"
               >
                 Clear
-              </button>
-              <button
-                type="button"
-                onClick={downloadPatientData}
-                className="btn btn-secondary flex items-center"
-                disabled={patients.length === 0}
-              >
-                <Download className="h-4 w-4 mr-1" /> Export
               </button>
             </div>
           </div>
@@ -214,7 +193,7 @@ const GetAllPatient = () => {
               {sortedPatients.map((patient) => (
                 <tr key={patient.id} className="hover:bg-gray-50">
                   <td className="font-medium text-gray-900">
-                    {patient.last_name}, {patient.first_name}
+                    {patient.first_name} {patient.last_name}
                   </td>
                   <td>{patient.date_of_birth}</td>
                   <td className="capitalize">{patient.gender}</td>

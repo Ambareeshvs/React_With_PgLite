@@ -53,11 +53,11 @@ const Dashboard = () => {
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <p className="mt-2 text-sm text-gray-600">
-          Welcome to Patient Portal, your patient registration system
+          Welcome to Patient Portal
         </p>
       </header>
-
-      <div className="mb-8">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
+        <div className="mb-8 h-6">
         <div className="bg-white overflow-hidden shadow rounded-lg">
           <div className="p-5">
             <div className="flex items-center">
@@ -88,73 +88,18 @@ const Dashboard = () => {
             <span className="inline-flex rounded-md shadow-sm">
               <Link
                 to="/register"
-                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="inline-flex items-center px-3 py-2 border border-transparent text-sm"
               >
-                <UserPlus className="h-4 w-4 mr-1" /> Register New
+                <UserPlus className="h-4 w-4 mr-1 font-medium text-black text-primary-600 hover:text-primary-500" /> Register New
               </Link>
             </span>
           </div>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {/* Register Patients Card */}
+      {/* Database Info Card */}
+      <div className="mb-8 h-6">
         <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 bg-primary-100 rounded-md p-3">
-                <UserPlus className="h-6 w-6 text-primary-600" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <h3 className="text-lg font-medium text-gray-900">Register Patients</h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  Add new patients to the system with comprehensive information
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gray-50 px-5 py-3">
-            <div className="text-sm">
-              <Link
-                to="/register"
-                className="font-medium text-primary-600 hover:text-primary-500"
-              >
-                Register new patient →
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Query Patients Card */}
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 bg-secondary-100 rounded-md p-3">
-                <Search className="h-6 w-6 text-secondary-600" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <h3 className="text-lg font-medium text-gray-900">Query Records</h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  Search and filter patient records using custom SQL queries
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gray-50 px-5 py-3">
-            <div className="text-sm">
-              <Link
-                to="/query"
-                className="font-medium text-secondary-600 hover:text-secondary-500"
-              >
-                Go to query interface →
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Database Info Card */}
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
+          <div className="p-6">
             <div className="flex items-center">
               <div className="flex-shrink-0 bg-accent-100 rounded-md p-3">
                 <DatabaseIcon className="h-6 w-6 text-accent-600" />
@@ -162,7 +107,7 @@ const Dashboard = () => {
               <div className="ml-5 w-0 flex-1">
                 <h3 className="text-lg font-medium text-gray-900">Database Status</h3>
                 <p className="mt-1 text-sm text-gray-500">
-                  Using Pglite for in-browser storage with multi-tab support
+                  Using Pglite for in-browser storage
                 </p>
               </div>
             </div>
@@ -170,10 +115,20 @@ const Dashboard = () => {
           <div className="bg-gray-50 px-5 py-3">
             <div className="text-sm flex items-center">
               <span className="h-2 w-2 bg-success-500 rounded-full mr-2"></span>
+              { isInitialized ? (
+                <>
               <span className="text-gray-600">Database initialized successfully</span>
+                </>
+              ) : (
+                <>
+              <span className="text-gray-600">Database initialized failed</span>
+                </>
+              )
+              }
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

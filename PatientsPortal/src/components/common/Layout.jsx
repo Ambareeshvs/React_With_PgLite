@@ -10,7 +10,7 @@ function Layout(){
         <Navbar onMenuClick={() => setSideBarOpen(true)} />
         <div className="flex flex-1 overflow-hidden">
             <Sidebar open={openSideBar} onClose={() => setSideBarOpen(false)} />
-            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-4 md:p-6 lg:p-8">
+            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-cyan-50 p-4 md:p-6 lg:p-8">
             <div className="max-w-7xl mx-auto">
                 <Outlet />
             </div>
