@@ -3,7 +3,7 @@
 A patient management system that runs in browser using PGlite and React.
 
 ## Demo
-
+https://patients-portal-pi.vercel.app/
 
 ## Installation
 
