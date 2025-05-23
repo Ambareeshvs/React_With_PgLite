@@ -37,7 +37,7 @@ npm run dev
 
 ## Acknowledgements
 
-- [Pglite Docs]([https://electric-sql.com/](https://pglite.dev/docs/)) for developing PGlite
+- [Pglite Docs](https://pglite.dev/docs/) for developing PGlite
 - [Vite](https://vitejs.dev/) for the build tool
 - [React](https://reactjs.org/) for the UI library
 - [TailwindCSS](https://tailwindcss.com/docs/installation/using-vite) for the CSS
